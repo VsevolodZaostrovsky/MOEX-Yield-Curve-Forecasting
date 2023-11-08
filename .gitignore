@@ -19,6 +19,8 @@ gdp_2.csv
 *.tdo
 *.pdf
 
+!report/vega_letter_white.pdf
+
 # Python Junk
 *.pyc
 *.pyo
