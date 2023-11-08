@@ -1,1 +1,34 @@
 gdp_2.csv
+
+# LaTeX Junk
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.fdb_latexmk
+*.fls
+*.synctex(busy)
+*.synctex
+*.lof
+*.lot
+*.tdo
+*.pdf
+
+# Python Junk
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Jupyter Notebook Junk
+.ipynb_checkpoints/
+
+# Misc Junk
+*.DS_Store
+*.swp
+.idea/
