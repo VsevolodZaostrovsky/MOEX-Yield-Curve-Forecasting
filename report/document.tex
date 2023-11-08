@@ -1,5 +1,7 @@
 \documentclass{vegaarticle}
 
+\usepackage{import}
+
 \author{}
 \title{Forecasting and Analysing the Yield Curve: An Econometric Study}
 \date{}
@@ -27,22 +29,22 @@
         In summary, this research aims to offer a comprehensive analysis of the yield curve, incorporating yield curve forecasting, impulse response analysis, and the study of structural breaks. By combining these three aspects, we provide insights into the future movements of the yield curve, the dynamic response to macroeconomic shocks, and the detection of structural changes associated with unpredictable events. These findings hold significant implications for investors, policymakers, and market participants, ultimately contributing to a deeper understanding of macroeconomic dynamics and aiding in informed decision-making in financial markets.
             
     \section{Understanding the yield curve}
-        \input{Understanding_YC.tex}
+        \import{./}{Understanding_YC.tex}
 
     \section{Literature Review}
-        \input{Literature_review.tex}
+        \import{./}{Literature_review.tex}
 
     \section{Data Collection and Preprocessing}
-        \input{Data.tex}
+        \import{./}{Data.tex}
     
     \section{Yield Curve Forecasting}
-        \input{YC_Forecasting.tex}
+        \import{./}{YC_Forecasting.tex}
     
     \section{Impulse Response Analysis}
-        \input{IRA.tex}
+        \import{./}{IRA.tex}
 
     \section{Structural Breaks Analysis}
-        \input{SBA.tex}
+        \import{./}{SBA.tex}
 
     \section{Conclusion}
 \end{document}
