@@ -25,6 +25,9 @@ dUseLT <- data.frame(year2 = exp(diff(log(df_train$Y2))) - 1,
                      year3 = exp(diff(log(df_train$Y3))) - 1,
                      year5 = exp(diff(log(df_train$Y5))) - 1)
 
+dp <- data.frame(date=df_train$date[1:1183], price=exp(diff(log(df_train$Y025))) - 1)
+
+plot(dp, type='l')
 
 # Random Walk
 rw3m <- arima(dUseST$month3, order=c(1, 0, 0))
