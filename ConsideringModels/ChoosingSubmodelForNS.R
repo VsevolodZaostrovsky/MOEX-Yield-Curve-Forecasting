@@ -6,6 +6,7 @@ library(urca)
 library(ggplot2)
 library(BVAR)
 library(Metrics)
+library(xtable)
 
 library(readr)
 
@@ -45,7 +46,7 @@ test <- data.frame(b0 = diff(coefsDrops$beta0[60:70]),
 varST <- VAR(train, p=1)
 pVAR <- predict(varST, h.ahead=10)
 
-rw <- arima(train$b0, order=c(0,1,0))
+rw <- arima(train$b0, order=c(1,0,0))
 prw <- predict(rw, 10)
 
 aa <- auto.arima(train$b0)
@@ -53,7 +54,11 @@ paa <- predict(aa, 10)
 
 mae(test$b0, pVAR$fcst$b0)
 mae(test$b0, prw$pred)
-mae(test$b0, paa$pred)
+mae(test$b0, paa$pred) # winner
+
+summary(aa) # (0,0,0)
+
+prw$pred
 
 
 # Beta1
@@ -69,8 +74,9 @@ paa <- predict(aa, 10)
 
 mae(test$b1, pVAR$fcst$b1)
 mae(test$b1, prw$pred)
-mae(test$b1, paa$pred)
+mae(test$b1, paa$pred) # winner
 
+summary(aa) # (0,0,0)
 
 # Beta2
 
@@ -85,7 +91,9 @@ paa <- predict(aa, 10)
 
 mae(test$b2, pVAR$fcst$b2)
 mae(test$b2, prw$pred)
-mae(test$b2, paa$pred)
+mae(test$b2, paa$pred) # winner
+
+summary(aa) # (1,0,0)
 
 
 # tau
@@ -101,6 +109,8 @@ paa <- predict(aa, 10)
 
 mae(test$tau, pVAR$fcst$tau)
 mae(test$tau, prw$pred)
-mae(test$tau, paa$pred)
+mae(test$tau, paa$pred) # winner
+
+summary(aa) # (0,0,0)
 
 
