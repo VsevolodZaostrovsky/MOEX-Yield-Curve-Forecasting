@@ -29,15 +29,6 @@ bonds <- data.frame(month3 = df_train$Y025,
                    year20 = df_train$Y20,
                    year30 = df_train$Y30)
 
-jotest=ca.jo(data.frame(bonds$month3, bonds$month6, bonds$month9), type="trace", K=2, ecdet="none", spec="longrun")
-summary(jotest)
-
-adf.test(bonds$month3 - 2.238505 * bonds$month6 + 1.241087 * bonds$month9)
-
-pp.test(bonds$month3 - 2.238505 * bonds$month6 + 1.241087 * bonds$month9)
-
-po.test(cbind(bonds$month3, -2.238505 * bonds$month6, 1.241087 * bonds$month9))
-
 latex(adf.test(bonds$month3),  file="adfbonds3")
 latex(adf.test(bonds$month6), file="adfbonds6")
 latex(adf.test(diff(bonds$month9), file="adfbonds9")
@@ -70,26 +61,55 @@ bonds <- data.frame(month3 = exp(diff(log(df_train$Y025))) - 1,
                    year15 = exp(diff(log(df_train$Y15))) - 1,
                    year30 = exp(diff(log(df_train$Y30))) - 1)
 
+bonds_test <- data.frame(month3 = exp(diff(log(df_test$Y025))) - 1, 
+                    month6 = exp(diff(log(df_test$Y05))) - 1,
+                    month9 = exp(diff(log(df_test$Y075))) - 1,
+                    year1 = exp(diff(log(df_test$Y1))) - 1,
+                    year5 = exp(diff(log(df_test$Y5))) - 1,
+                    year15 = exp(diff(log(df_test$Y15))) - 1,
+                    year30 = exp(diff(log(df_test$Y30))) - 1)
+
 
 # Random Walk
-arima3m <- arima(dUse$month3, order=c(0, 1, 0))
-arima6m <- arima(dUse$month6, order=c(0, 1, 0))
-arima9m <- arima(dUse$month9, order=c(0, 1, 0))
-arima1y <- arima(dUse$year1, order=c(0, 1, 0))
-arima5y <- arima(dUse$year5, order=c(0, 1, 0))
-arima15y <- arima(dUse$year5, order=c(0, 1, 0))
-arima30y <- arima(dUse$year15, order=c(0, 1, 0))
+rw3m <- arima(dUse$month3, order=c(0, 1, 0))
+rw6m <- arima(dUse$month6, order=c(0, 1, 0))
+rw9m <- arima(dUse$month9, order=c(0, 1, 0))
+rw1y <- arima(dUse$year1, order=c(0, 1, 0))
+rw5y <- arima(dUse$year5, order=c(0, 1, 0))
+rw15y <- arima(dUse$year5, order=c(0, 1, 0))
+rw30y <- arima(dUse$year15, order=c(0, 1, 0))
 
 
+# Auto Arima
+arima3m <- auto.arima(dUse$month3)
+arima6m <- auto.arima(dUse$month6)
+arima9m <- auto.arima(dUse$month9)
+arima1y <- auto.arima(dUse$year1)
+arima5y <- auto.arima(dUse$year5)
+arima15y <- auto.arima(dUse$year5)
+arima30y <- auto.arima(dUse$year15)
 
-# VAR(1)
-mod <- VAR(dUse, p = 1)
+# Constant
+с3m <- arima(dUse$month3, order=c(0,0,0))
+с6m <- arima(dUse$month6, order=c(0,0,0))
+с9m <- arima(dUse$month9, order=c(0,0,0))
+с1y <- arima(dUse$year1, order=c(0,0,0))
+с5y <- arima(dUse$year5, order=c(0,0,0))
+с15y <- arima(dUse$year5, order=c(0,0,0))
+с30y <- arima(dUse$year15, order=c(0,0,0))
 
 
-# VAR(1) vs RW
-predVAR <- predict(mod, n.ahead=296)
-predarima1y <- predict(arima1y, n.ahead=296)
+# ARIMA and RW
+dm.test(predict(arima15y, 30)$pred - bonds_test$year15[1:30], predict(rw15y, 30)$pred - bonds_test$year15[1:30])
 
-mae(predVAR$fcst$year1, df_test$Y1)
-mae(predarima1y$pred, df_test$Y1)
+mae(predict(arima15y, 30)$pred , bonds_test$year15[1:30])
+mae(predict(rw15y, 30)$pred , bonds_test$year15[1:30])
+mae(predict(с15y, 30)$pred , bonds_test$year15[1:30])
 
+dm.test(predict(arima30y, 30)$pred - bonds_test$year30[1:30], predict(rw30y, 30)$pred - bonds_test$year30[1:30])
+
+mae(predict(arima30y, 30)$pred , bonds_test$year30[1:30])
+mae(predict(rw30y, 30)$pred , bonds_test$year30[1:30])
+mae(predict(с30y, 30)$pred , bonds_test$year30[1:30])
+
+plot(predict(arima3m, 30)$pred)
