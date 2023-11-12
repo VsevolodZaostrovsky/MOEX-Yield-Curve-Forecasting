@@ -18,13 +18,12 @@ library(readr)
 # DATA CONFIG
 
 
-df_train <- read_csv("FinancialEconometrics/DataWork/Data/main_df_train.csv",
-    col_types = cols(date = col_date(format = "%Y-%m-%d"))
-)
+df_train <- read_csv("~/GitHubRepos/FinancialEconometrics/DataWork/Data/main_df_train.csv", 
+                     col_types = cols(date = col_date(format = "%Y-%m-%d")))
 
-df_test <- read_csv("FinancialEconometrics/DataWork/Data/main_df_test.csv",
-    col_types = cols(date = col_date(format = "%Y-%m-%d"))
-)
+df_test <- read_csv("~/GitHubRepos/FinancialEconometrics/DataWork/Data/main_df_test.csv", 
+                    col_types = cols(date = col_date(format = "%Y-%m-%d")))
+
 
 bonds <- data.frame(
     month3 = df_train$Y025,
@@ -49,38 +48,47 @@ bonds <- data.frame(
 # COINTEGRATION 3m, 6m, 9m, 1y, 5y, 10y
 jotest_1 <- ca.jo(
     data.frame(
-        bonds$month3, bonds$month6, bonds$month9,
-        bonds$year1, bonds$year5, bonds$year10
+        bonds$month3, bonds$month6, bonds$month9
     ),
     type = "trace", K = 2, ecdet = "none", spec = "longrun"
 )
 # не отвергается r<=3
 summary(jotest_1)
+adf.test(1.000000 * bonds$month3 - 2.238043 * bonds$month6 + 1.240642 * bonds$month9)
 
-
-# COINTEGRATION 3m, 6m, 9m, 1y, 3y, 5y, 7y, 10y
+# COINTEGRATION 3m, 6m, 9m, 1y, 2y, 3y
 jotest_2 <- ca.jo(
     data.frame(
         bonds$month3, bonds$month6, bonds$month9,
-        bonds$year1, bonds$year3, bonds$year5, 
-        bonds$year7, bonds$year10
+        bonds$year1, bonds$year2, bonds$year3
     ),
     type = "trace", K = 2, ecdet = "none", spec = "longrun"
 )
 # не отвергается r<=5
 summary(jotest_2)
+adf.test(bonds$month3 + 3.9705588 * bonds$month6 -17.8903858*bonds$month9)
 
-
-# COINTEGRATION 3m, 6m, 9m
+# COINTEGRATION y1, y2, y3
 jotest_3 <- ca.jo(
     data.frame(
-        bonds$month3, bonds$month6, bonds$month9
+      bonds$year1, bonds$year2, bonds$year3 
     ),
     type = "trace", K = 2, ecdet = "none", spec = "longrun"
 )
 # r<=1 не отвергаем
 summary(jotest_3)
+adf.test(1.000000 * bonds$year1 - 2.787553 * bonds$year2 + 1.869056 * bonds$year3)
 
+# COINTEGRATION 3m, 6m, 9m
+jotest_3 <- ca.jo(
+  data.frame(
+    bonds$year5, bonds$year7, bonds$year10 
+  ),
+  type = "trace", K = 2, ecdet = "none", spec = "longrun"
+)
+# r<=1 не отвергаем
+summary(jotest_3)
+adf.test(1.000000 * bonds$year5 + 0.09400387 * bonds$year7 - 1.24520401 * bonds$year10)
 
 # COINTEGRATION 5y, 7y, 10y
 jotest_4 <- ca.jo(
