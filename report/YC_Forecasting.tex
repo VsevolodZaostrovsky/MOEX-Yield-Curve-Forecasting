@@ -42,23 +42,25 @@
             It is used as a baseline model for the comparison with other models.
 
         \subsubsection{Auto-ARIMA}
-            We assumed the ARIMA model set for the bond yields. The model is defined as follows:
+            Later, we assumed the ARIMA model set for the bond yields. The model is defined as follows:
             \begin{equation}\label{eq:ARIMA}
                 \Delta^d y_t = \phi_0 + \phi_1 \Delta^d y_{t-1} + \ldots + \phi_p \Delta^d y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + \ldots + \theta_q \epsilon_{t-q},
             \end{equation}
-            where $\epsilon_t$ is the white noise with zero mean and variance $\sigma^2$, and $\Delta$ is a first difference operator.
+            where $\epsilon_t$ is the white noise process with zero mean and variance $\sigma^2$, and $\Delta$ is a first difference operator.
             The model is estimated using the \texttt{auto.arima} function from the \texttt{forecast} package in R.
 
         \subsubsection{Vector Error Correction}
-            We assumed the VEC model for the bond yields. The model is defined as follows:
+            Later, we assumed the VEC model for the bond yields. The model is defined as follows:
             \begin{equation}\label{eq:VEC}
                 \Delta y_{t} = \Pi y_{t-1} + A_0 + A_1 \Delta y_{t-1} + \dots + A_p \Delta y_{t-p} + \epsilon_t. 
             \end{equation}
-            where $\epsilon_t$ is the white noise with zero mean and variance $\sigma^2$.
+            where $\epsilon_t$ is the white noise process with zero mean and variance $\sigma^2$.
             The model is estimated using the \texttt{ca.jo} function from the \texttt{urca} package in R.
             
         \subsubsection{Results}
-            \begin{table}[htbp]
+        \
+        
+            \begin{table}[!htbp]
                 \subimport{results}{BondsYresults.tex}
                 \label{tab:naiveres}
                 \caption{Forecasting results with 1 month horizon and $L^1$ loss (MAE)}
