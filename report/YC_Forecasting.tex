@@ -67,7 +67,8 @@
             where $\epsilon_t$ is the white noise process with zero mean and variance $\sigma^2$.
             The model is estimated using the \texttt{ugarchspec} and \texttt{ugarchfit} functions from the \texttt{rugarch} package in R.
             
-        \subsubsection{Results}\footnote{** means the significance at 5\% confidence level}
+        \subsubsection{Results}\footnote{** means the significance at 5\% confidence level that auto-ARIMA is better then ARIMA(0,0,0). 
+        All the other differences are significant at 1\% confidence level. We used Diebold-Mariano test. }
         \
 
             \begin{table}[!htbp]
@@ -155,11 +156,13 @@
             \end{figure}
 
             It is possible to use the standard OLS method to estimate the parameters of the DNS model since there is 
-            weak stationarity of the factor increments and no cointegration in the calculated time series, see Table \ref{}. 
+            weak stationarity of the factor increments. 
             \subimport{results/NScoefsStationary}{diffNScoefsStationary}
             \subimport{results/NScoefsStationary}{NScoefsStationary}
 
-            It turns out that the best forecast of the NS factors is the constant forecast. The results of the model calibration on a train dataset are presented in Table \ref{tab:DNSresults}. Note that the difference between ARIMA and RW performance is not significant.
+            It turns out that the best forecast of the NS factors is the constant forecast. The results of the model calibration on a train dataset are presented 
+            in Table \ref{tab:DNSresults}\footnote{Auto-ARIMA is not significantly better then RW. 
+            All the other differences are significant at 1\% confidence level. We used Diebold-Mariano test. }.
             \begin{table}[htbp]
                 \centering
                 \input{results/NScoefresults.tex}
