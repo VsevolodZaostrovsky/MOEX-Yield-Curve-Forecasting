@@ -1,0 +1,18 @@
+\begin{table}[!htbp]
+\begin{center}
+\begin{tabular}{|ccccc|}
+\hline
+{Statistic}&{Parameter}&{Alternative}&{$p_{\text{value}}$}&{Variable name}\tabularnewline
+\hline
+$-2.132$&$3$&stationary&$0.521$&\texttt{train\_b0}\tabularnewline
+\hline
+$-2.562$&$3$&stationary&$0.347$&\texttt{train\_b1}\tabularnewline
+\hline
+$-2.304$&$3$&stationary&$0.451$&\texttt{train\_b2}\tabularnewline
+\hline
+$-2.223$&$3$&stationary&$0.484$&\texttt{train\_tau}\tabularnewline
+\hline
+\end{tabular}\end{center}
+\caption{ADF test for the values of the NS factors}
+\label{tab:ADFNSval}
+\end{table}

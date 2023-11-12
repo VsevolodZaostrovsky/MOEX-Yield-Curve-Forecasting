@@ -8,14 +8,21 @@
             The ADF test is a unit root test, which means that it determines how strongly a time series is defined by a trend.
             The test is based on the assumption that the time series is a random walk with drift.
             The test is performed using the \texttt{ur.df} function from the \texttt{urca} package in R.
-            The results of the test are presented in Table \ref{tab:adftestForYields} (yields) and Table \ref{tab:adftestForYieldsDifference} (first difference).
+            The results of the test are presented in Table \ref{tab:adftestForYields} (yields) and Table 
+            \ref{tab:adftestForYieldsDifference} (first difference).
+            \subimport{results/BondDFtests}{WithoutDiff.tex}
+            \subimport{results/BondDFtests}{WithDiff.tex}
 
 
 
         \subsubsection{Cointegration}
-            We found out that the bond yields with 3m, 6m, and 9m time to maturity are cointegrated. Therefore, we shall drop the 
-            6m bond from the models where we use the yield curve as an explanatory variable. The obtained results could be explained 
-            with the so-called \emph{market segmentation hypothesis}. 
+            In order to test the cointegration of the yield curve and the macroeconomic variables, we shall use the
+            \emph{Johansen test}. The null hypothesis of the test is that the time series are not cointegrated.
+            The test is performed using the \texttt{ca.jo} function from the \texttt{urca} package in R.
+            The results of the test are presented in Table \ref{tab:johansenTest}.    
+
+            We found out that the bond yields with 3m, 6m, and 9m time to maturity are cointegrated. The obtained results could 
+            be explained with the so-called \emph{market segmentation hypothesis}. 
             
             The market segmentation hypothesis states that the yield curve is segmented into different maturity sectors, and the 
             yields in each sector are determined by the supply and demand for bonds in that sector, since the investors could be 
@@ -26,80 +33,150 @@
 
 
 
-
-
     \subsection{Na\"ive approach for the bond yield forecasting}
-        \subsubsection{VAR and auto-ARIMA}
-        \subsubsection{Segmented VAR}
-        \subsubsection{GARCH}
+        \subsubsection{Random walk}
+            We assumed the random walk model for the bond yields. The model is defined as follows:
+            \begin{equation}\label{eq:RW}
+                y_t = y_{t-1} + \epsilon_t.
+            \end{equation}
+            It is used as a baseline model for the comparison with other models.
+
+        \subsubsection{Auto-ARIMA}
+            We assumed the ARIMA model set for the bond yields. The model is defined as follows:
+            \begin{equation}\label{eq:ARIMA}
+                \Delta^d y_t = \phi_0 + \phi_1 \Delta^d y_{t-1} + \ldots + \phi_p \Delta^d y_{t-p} + \epsilon_t + \theta_1 \epsilon_{t-1} + \ldots + \theta_q \epsilon_{t-q},
+            \end{equation}
+            where $\epsilon_t$ is the white noise with zero mean and variance $\sigma^2$, and $\Delta$ is a first difference operator.
+            The model is estimated using the \texttt{auto.arima} function from the \texttt{forecast} package in R.
+
+        \subsubsection{Vector Error Correction}
+            We assumed the VEC model for the bond yields. The model is defined as follows:
+            \begin{equation}\label{eq:VEC}
+                \Delta y_{t} = \Pi y_{t-1} + A_0 + A_1 \Delta y_{t-1} + \dots + A_p \Delta y_{t-p} + \epsilon_t. 
+            \end{equation}
+            where $\epsilon_t$ is the white noise with zero mean and variance $\sigma^2$.
+            The model is estimated using the \texttt{ca.jo} function from the \texttt{urca} package in R.
+            
+        \subsubsection{Results}
+            \begin{table}[htbp]
+                \subimport{results}{BondsYresults.tex}
+                \label{tab:naiveres}
+                \caption{Forecasting results with 1 month horizon and $L^1$ loss (MAE)}
+            \end{table}
 
     \subsection{Nelson-Siegel parametric model}
-        Let us now remind the \emph{Nelson-Siegel model} introduced in \cite{Nelson1987} for the yield curve estimation. The 
-        static NS model is defined as follows:
-        \begin{equation}\label{eq:NS}
-            G(T) = \beta_0 + (\beta_1+\beta_2)\frac{\tau}{T}\left(1-e^{-\frac{T}{\tau}}\right)-\beta_2  e^{-\frac{T}{\tau}},
-        \end{equation}
-        where $T$ is the time to maturity, $G(T)$ is the yield estimator of the government bonds from the curve basis, 
-        and the parameters to be estimated are
-        \begin{enumerate}
-            \item $\tau$ is the 'typical' time to maturity, 
-            \item $\beta_0$ is the long-run of zero-bond yields, 
-            \item $\beta_1$ is the mid-run of zero-bond yields, 
-            \item $\beta_2$ is the short-run of zero-bond yields.
-        \end{enumerate}
+        \subsubsection{Theoretical description}
+            Let us now remind the \emph{Nelson-Siegel model} introduced in \cite{Nelson1987} for the yield curve estimation. The 
+            static NS model is defined as follows:
+            \begin{equation}\label{eq:NS}
+                G(T) = \beta_0 + (\beta_1+\beta_2)\frac{\tau}{T}\left(1-e^{-\frac{T}{\tau}}\right)-\beta_2  e^{-\frac{T}{\tau}},
+            \end{equation}
+            where $T$ is the time to maturity, $G(T)$ is the yield estimator of the government bonds from the curve basis, 
+            and the parameters to be estimated are
+            \begin{enumerate}
+                \item $\tau$ is the 'typical' time to maturity, 
+                \item $\beta_0$ is the long-run of zero-bond yields, 
+                \item $\beta_1$ is the mid-run of zero-bond yields, 
+                \item $\beta_2$ is the short-run of zero-bond yields.
+            \end{enumerate}
 
-        The Nelson-Siegel model offers significant advantages for yield curve estimation and interest rate forecasting. 
-        Its simplicity, flexibility, stability, and market insights make it a highly valuable tool.
+            The Nelson-Siegel model offers significant advantages for yield curve estimation and interest rate forecasting. 
+            Its simplicity, flexibility, stability, and market insights make it a highly valuable tool.
 
-        The model's simplicity is evident through its use of only a few parameters, making it easy to understand and 
-        interpret. Its flexibility allows for capturing both short-term fluctuations and long-term trends in interest 
-        rates accurately. The stability of the model is tested and validated across different markets and economic 
-        conditions, instilling confidence in its reliability.
-        
-        Additionally, the Nelson-Siegel model provides valuable insights into market expectations by decomposing the 
-        term structure of interest rates. This information is crucial for decision-making and portfolio management. 
-        The model's versatility allows for customization and extensions to meet specific needs, further enhancing its 
-        applicability.
-        
-        We shall suggest a modification of the \emph{Dynamic Nelson-Siegel model} introduced in \cite{Diebold2006}.
-        First of all, we shall discuss the original DNS model. The functional dependency of the yield curve on the 
-        time to maturity $T$ is given by
-        \begin{equation}\label{eq:DNS}
-            G(t, T) = \beta_0(t) + \beta_1(t)\frac{\tau(t)}{T}\left(1-e^{-\frac{T}{\tau(t)}}\right)-\beta_2(t)  e^{-\frac{T}{\tau(t)}},
-        \end{equation}
-        where $t$ is the current time, $T$ is the time to maturity at time $t$, $\beta_0(t)$, $\beta_1(t)$, 
-        $\beta_2(t)$, and $\tau(t)$ are time-varying parameters. The factors are modeled as AR(1) processes:
-        \begin{equation}\label{eq:DNS_AR}
-            \begin{aligned}
-                \beta_0(t) &= \beta_0 + \phi_{0,1}(\beta_0(t-1)-\beta_0) + \varepsilon_{0,t}, \\
-                \beta_1(t) &= \beta_1 + \phi_{1,1}(\beta_1(t-1)-\beta_1) + \varepsilon_{1,t}, \\
-                \beta_2(t) &= \beta_2 + \phi_{2,1}(\beta_2(t-1)-\beta_2) + \varepsilon_{2,t}.
-            \end{aligned}
-        \end{equation}
+            The model's simplicity is evident through its use of only a few parameters, making it easy to understand and 
+            interpret. Its flexibility allows for capturing both short-term fluctuations and long-term trends in interest 
+            rates accurately. The stability of the model is tested and validated across different markets and economic 
+            conditions, instilling confidence in its reliability.
+            
+            Additionally, the Nelson-Siegel model provides valuable insights into market expectations by decomposing the 
+            term structure of interest rates. This information is crucial for decision-making and portfolio management. 
+            The model's versatility allows for customization and extensions to meet specific needs, further enhancing its 
+            applicability.
+            
+            We shall suggest a modification of the \emph{Dynamic Nelson-Siegel model} introduced in \cite{Diebold2006}.
+            First of all, we shall discuss the original DNS model. The functional dependency of the yield curve on the 
+            time to maturity $T$ is given by
+            \begin{equation}\label{eq:DNS}
+                G(t, T) = \beta_0(t) + \beta_1(t)\frac{\tau(t)}{T}\left(1-e^{-\frac{T}{\tau(t)}}\right)-\beta_2(t)  e^{-\frac{T}{\tau(t)}},
+            \end{equation}
+            where $t$ is the current time, $T$ is the time to maturity at time $t$, $\beta_0(t)$, $\beta_1(t)$, 
+            $\beta_2(t)$, and $\tau(t)$ are time-varying parameters. The factors are modeled as AR(1) processes:
+            \begin{equation}\label{eq:DNS_AR}
+                \begin{aligned}
+                    \beta_0(t) &= \beta_0 + \phi_{0,1}(\beta_0(t-1)-\beta_0) + \epsilon_{0,t}, \\
+                    \beta_1(t) &= \beta_1 + \phi_{1,1}(\beta_1(t-1)-\beta_1) + \epsilon_{1,t}, \\
+                    \beta_2(t) &= \beta_2 + \phi_{2,1}(\beta_2(t-1)-\beta_2) + \epsilon_{2,t}.
+                \end{aligned}
+            \end{equation}
 
-        Now we shall describe our modification of the DNS model. We shall assume that the factors $\beta_0(t)$,
-        $\beta_1(t)$, $\beta_2(t)$, and $\tau(t)$ are modeled as follows:
+            \begin{figure}
+                \includegraphics[width=\linewidth]{FactorHist.pdf}
+                \caption{Nelson-Siegel factor distribution (with outliers)}
+                \label{fig:NSHistOutliers}
+            \end{figure}
+
+
+            \begin{figure}
+                \includegraphics[width=\linewidth]{factorsAfterDrop.pdf}
+                \caption{Nelson-Siegel factor distribution (without outliers)}
+                \label{fig:NSHistDropped}
+            \end{figure}
 
 
 
 
-        To calibrate the suggested model we followed the steps described below:
-        \begin{enumerate}
-            \item Using the non-linear least squares method, we estimated the parameters of the static Nelson-Siegel for each day of the sample period.
-            \item Given a set of estimated factors, we estimated the parameters of the chosen model using the standard OLS method. The models we used:
-                \begin{itemize}
-                    \item auto-ARIMA,
-                    \item VAR(1),
-                    \item Random Walk as a baseline.
-                \end{itemize}
-        \end{enumerate}
 
-        It is possible to use the standard OLS method to estimate the parameters of the DNS model since there is no cointegration in the calculated time series, see Table \ref{}. 
 
-        The results of the model calibration are presented in Table \ref{tab:DNSresults}.
-        \begin{table}
-            \label{tab:DNSresults}
-            \centering
-            \input{results/NScoefresults.tex}
-            \caption{Parameters of the DNS model for 3 different forecasting models.}
-        \end{table}
+
+        \subsubsection{Forecasting results}
+            To calibrate the suggested model we followed the steps described below:
+            \begin{enumerate}
+                \item Using the non-linear least squares method, we estimated the parameters of the static Nelson-Siegel 
+                for each day of the sample period.
+                \item Given a set of estimated factors, we estimated the parameters of the chosen model using the standard 
+                OLS method. The models we used for the factor forecasting:
+                    \begin{itemize}
+                        \item auto-ARIMA,
+                        \item VAR(1),
+                        \item Random Walk as a baseline.
+                    \end{itemize}
+            \end{enumerate}
+
+            After the non-linear least squares optimization, we obtained the factor dynamics found in Figure \ref{fig:factordynamics}.
+            \begin{figure}
+                \includegraphics[width=\linewidth]{factors.pdf}
+                \caption{Nelson-Siegel factor dynamics}
+                \label{fig:factordynamics}
+            \end{figure}
+
+
+            It is possible to use the standard OLS method to estimate the parameters of the DNS model since there is 
+            weak stationarity of the factor increments and no cointegration in the calculated time series, see Table \ref{}. 
+            \subimport{results/NScoefsStationary}{diffNScoefsStationary}
+            \subimport{results/NScoefsStationary}{NScoefsStationary}
+
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%% Не могу понять где коинтеграция для НС
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%
+
+
+            It turns out that the best forecast of the NS factors is the constant forecast. The results of the model calibration on a train dataset are presented in Table \ref{tab:DNSresults}.
+            \begin{table}[htbp]
+                \centering
+                \input{results/NScoefresults.tex}
+                \caption{Parameters of the DNS model for 3 different forecasting models.}
+                \label{tab:DNSresults}
+            \end{table}
