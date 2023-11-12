@@ -166,6 +166,9 @@ b369 <- data.frame(month3 = df_train$Y025,
 
 
 vec2var369 <- vec2var(jotest_1, r=1)
+
+irf(vec2var369)
+plot(irf(vec2var369))
 pred_vec2var369 <- predict(vec2var369, n.ahead=30)
 p3 <- exp(diff(log(pred_vec2var369$fcst$bonds.month3))) - 1
 reald <- exp(diff(log(df_test$Y025[1:30]))) - 1
@@ -193,7 +196,7 @@ jotest_2 <- ca.jo(
 )
 summary(jotest_2)
 
-vec2var1515 <- vec2var(jotest_2, r=2)
+vec2var1515 <- vec2var(jotest_2, r=1)
 pred_vec2var1515 <- predict(vec2var1515, n.ahead=30)
 p3 <- exp(diff(log(pred_vec2var1515$fcst$bonds.year1))) - 1
 reald <- exp(diff(log(df_test$Y1[1:30]))) - 1
