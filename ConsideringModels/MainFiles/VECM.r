@@ -169,6 +169,9 @@ vec2var369 <- vec2var(jotest_1, r=1)
 
 irf(vec2var369)
 plot(irf(vec2var369))
+
+
+
 pred_vec2var369 <- predict(vec2var369, n.ahead=30)
 p3 <- exp(diff(log(pred_vec2var369$fcst$bonds.month3))) - 1
 reald <- exp(diff(log(df_test$Y025[1:30]))) - 1

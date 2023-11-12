@@ -76,6 +76,33 @@
     \import{./}{SBA.tex}
 
     \section{Conclusion}
+        \par
+        This research leads one to three important conclusion:
+        \begin{itemize}
+            \item Now it is clear why classical time series without exogenous parameters are not used to predict bond yields. 
+            The models are only capable of offering constant or constant-like predictions, and the bond yields are considered 
+            martingales within the framework of these models. In order to obtain more meaningful predictions, additional 
+            information about the bond is necessary, such as specific and strong model assumptions or a suitable set of exogenous 
+            factors. Without such information, the best outcome we can achieve is a constant-like prediction. This distinction 
+            further emphasizes the lack of memory in bonds, unlike stocks, which can exhibit more complex and dynamic behavior over time.
+            \item In our research, we have made a significant discovery that bonds with similar times to maturity are cointegrated. 
+            This finding is particularly noteworthy and can be explained by the theory of market segmentation. 
+            Bonds with different maturities tend to attract different categories of investors, who have largely 
+            dissimilar preferences and interests. This distinct segmentation contributes to the formation of a specific relationship 
+            between bond markets with close time to maturity. Furthermore, this discovery holds great importance from a technical perspective,
+             as it affects the methodology of predictions and the construction of impulse responses.
+            \item Unfortunately, despite our efforts, we were unable to construct non constant-like forecasts for the coefficients 
+            in the considered version of the Nelson-Siegel model. It is possible that these coefficients are also martingales under the 
+            filtration used in the Russian market, suggesting the need for a more intricate model to derive non-trivial predictions. 
+            Additionally, this could be attributed to the specific period we analyzed, a post-crisis growth period characterized 
+            by exceptional conditions in the Russian economy. During this time, the economy was free from significant economic shocks, 
+            and there was a high level of optimism among investors and citizens. Moreover, the Russian income from hydrocarbon exports was substantial. 
+            Theoretically, these factors would support the expectation of a normal yield curve at each moment in time. 
+            We conducted an analysis of the zero-yield curves (ZYC) for each month and discovered that they exhibited normal 
+            behavior in almost every month, further supporting this hypothesis.
+        \end{itemize}
+        In our future research, we plan to consider exogenous factors and more complicated models to improve our prediction metodology.
+        Also, we will consider structural structural breaks and impulse-responses. 
 
     \references
 \end{document} 
