@@ -40,7 +40,7 @@
 \RequirePackage{mathtext}
 \RequirePackage{amsthm}
 
-\RequirePackage[backend=biber,style=alphabetic,sorting=ynt]{biblatex}
+\RequirePackage[backend=biber,style=authoryear]{biblatex}
 \RequirePackage{csquotes}
 
 \RequirePackage{authblk}
