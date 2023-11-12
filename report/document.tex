@@ -1,10 +1,13 @@
 \documentclass{vegaarticle}
 
 \usepackage{import}
+\addbibresource{refs.bib}
 
 \author{Vsevolod Zaostrovsky, Ivan Cherepakhin, Artemy Sazonov}
-\title{Forecasting and Analysing the Yield Curve: An Econometric Study}
+\title{Forecasting the Yield Curve: An Econometric Study}
 \date{\today}
+
+\jel{C53, G17, E47}
 
 \begin{document}
     \maketitle
@@ -60,24 +63,18 @@
         and the detection of structural changes associated with unpredictable events. These findings hold significant
         implications for investors, policymakers, and market participants, ultimately contributing to a deeper
         understanding of macroeconomic dynamics and aiding in informed decision-making in financial markets.
-            
-    \section{Understanding the yield curve}
-        \import{./}{Understanding_YC.tex}
 
-    \section{Literature Review}
-        \import{./}{Literature_review.tex}
+    \import{./}{Literature_review.tex}
 
-    \section{Data Collection and Preprocessing}
-        \import{./}{Data.tex}
-    
-    \section{Yield Curve Forecasting}
-        \import{./}{YC_Forecasting.tex}
-    
-    \section{Impulse Response Analysis}
-        \import{./}{IRA.tex}
+    \import{./}{Data.tex}
 
-    \section{Structural Breaks Analysis}
-        \import{./}{SBA.tex}
+    \import{./}{YC_Forecasting.tex}
+
+    \import{./}{IRA.tex}
+
+    \import{./}{SBA.tex}
 
     \section{Conclusion}
-\end{document}
+
+    \references
+\end{document} 

@@ -1,0 +1,10 @@
+\begin{table}[!tbp]
+\begin{center}
+\begin{tabular}{rrlrll}
+\hline\hline
+\multicolumn{1}{c}{statistic}&\multicolumn{1}{c}{parameter}&\multicolumn{1}{c}{alternative}&\multicolumn{1}{c}{p.value}&\multicolumn{1}{c}{method}&\multicolumn{1}{c}{data.name}\tabularnewline
+\hline
+$-2.30431652496989$&$3$&stationary&$0.451771816907887$&Augmented Dickey-Fuller Test&train$b2\tabularnewline
+\hline
+\end{tabular}\end{center}
+\end{table}
