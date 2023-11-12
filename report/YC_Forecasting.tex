@@ -21,6 +21,8 @@
             The test is performed using the \texttt{ca.jo} function from the \texttt{urca} package in R.
             The results of the test are presented in Table \ref{tab:johansenTest}.    
 
+            \subimport{cointegr}{Cointegration_table.tex}
+
             We found out that the bond yields with 3m, 6m, and 9m time to maturity are cointegrated. The obtained results could 
             be explained with the so-called \emph{market segmentation hypothesis}. 
             
@@ -56,10 +58,18 @@
             \end{equation}
             where $\epsilon_t$ is the white noise process with zero mean and variance $\sigma^2$.
             The model is estimated using the \texttt{ca.jo} function from the \texttt{urca} package in R.
+
+        \subsubsection{GARCH}
+            Later, we assumed the GARCH model for the bond yields. The model for volatility is defined as follows:
+            \begin{equation}\label{eq:GARCH}
+                s_t^2 = \omega + \alpha \epsilon_{t-1}^2 + \beta s_{t-1}^2,
+            \end{equation}
+            where $\epsilon_t$ is the white noise process with zero mean and variance $\sigma^2$.
+            The model is estimated using the \texttt{ugarchspec} and \texttt{ugarchfit} functions from the \texttt{rugarch} package in R.
             
-        \subsubsection{Results}
+        \subsubsection{Results}\footnote{** means the significance at 5\% confidence level}
         \
-        
+
             \begin{table}[!htbp]
                 \subimport{results}{BondsYresults.tex}
                 \label{tab:naiveres}
@@ -117,18 +127,11 @@
                 \label{fig:NSHistOutliers}
             \end{figure}
 
-
             \begin{figure}
                 \includegraphics[width=\linewidth]{factorsAfterDrop.pdf}
                 \caption{Nelson-Siegel factor distribution (without outliers)}
                 \label{fig:NSHistDropped}
             \end{figure}
-
-
-
-
-
-
 
         \subsubsection{Forecasting results}
             To calibrate the suggested model we followed the steps described below:
@@ -151,29 +154,10 @@
                 \label{fig:factordynamics}
             \end{figure}
 
-
             It is possible to use the standard OLS method to estimate the parameters of the DNS model since there is 
             weak stationarity of the factor increments and no cointegration in the calculated time series, see Table \ref{}. 
             \subimport{results/NScoefsStationary}{diffNScoefsStationary}
             \subimport{results/NScoefsStationary}{NScoefsStationary}
-
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%% Не могу понять где коинтеграция для НС
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-            %%%%%%%%%%%%%%
-
 
             It turns out that the best forecast of the NS factors is the constant forecast. The results of the model calibration on a train dataset are presented in Table \ref{tab:DNSresults}.
             \begin{table}[htbp]
