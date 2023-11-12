@@ -23,7 +23,6 @@ testdata3m <- (exp(diff(log(df_test$Y025))) - 1)[1:40]
 dUseST <- data.frame(month3 = 100 * (exp(diff(log(df_train$Y025))) - 1), 
                      month6 = 100 * (exp(diff(log(df_train$Y05))) - 1))
 
-Nelson.Siegel( rate, maturity )
 
 plot()
 
@@ -67,7 +66,7 @@ plot(ugarchforecast(garch3m, n.ahead))
 
 mae(pRW3m$pred, testdata3m)
 mae(pVAR$fcst$month3, testdata3m)
-mae(pgarch3m$ , testdata3m)
+mae(pgarch3m$pred , testdata3m)
 
 pautoARIMA3m$pred
 

@@ -31,7 +31,7 @@ bonds <- data.frame(month3 = df_train$Y025,
 
 latex(adf.test(bonds$month3),  file="adfbonds3")
 latex(adf.test(bonds$month6), file="adfbonds6")
-latex(adf.test(diff(bonds$month9), file="adfbonds9")
+latex(adf.test(diff(bonds$month9), file="adfbonds9"))
 latex(adf.test(bonds$year1), file="adfbonds12")
 latex(adf.test(bonds$year2), file="adfbonds24")
 latex(adf.test(bonds$year3), file="adfbonds36")
