@@ -31,7 +31,7 @@ bonds <- data.frame(month3 = df_train$Y025,
 
 latex(adf.test(bonds$month3),  file="adfbonds3")
 latex(adf.test(bonds$month6), file="adfbonds6")
-latex(adf.test(bonds$month9), file="adfbonds9")
+latex(adf.test(diff(bonds$month9), file="adfbonds9"))
 latex(adf.test(bonds$year1), file="adfbonds12")
 latex(adf.test(bonds$year2), file="adfbonds24")
 latex(adf.test(bonds$year3), file="adfbonds36")
@@ -71,45 +71,35 @@ bonds_test <- data.frame(month3 = exp(diff(log(df_test$Y025))) - 1,
 
 
 # Random Walk
-rw3m <- arima(bonds$month3, order=c(0, 1, 0))
-rw6m <- arima(bonds$month6, order=c(0, 1, 0))
-rw9m <- arima(bonds$month9, order=c(0, 1, 0))
-rw1y <- arima(bonds$year1, order=c(0, 1, 0))
-rw5y <- arima(bonds$year5, order=c(0, 1, 0))
-rw15y <- arima(bonds$year5, order=c(0, 1, 0))
-rw30y <- arima(bonds$year15, order=c(0, 1, 0))
+rw3m <- arima(dUse$month3, order=c(0, 1, 0))
+rw6m <- arima(dUse$month6, order=c(0, 1, 0))
+rw9m <- arima(dUse$month9, order=c(0, 1, 0))
+rw1y <- arima(dUse$year1, order=c(0, 1, 0))
+rw5y <- arima(dUse$year5, order=c(0, 1, 0))
+rw15y <- arima(dUse$year5, order=c(0, 1, 0))
+rw30y <- arima(dUse$year15, order=c(0, 1, 0))
 
 
 # Auto Arima
-arima3m <- auto.arima(bonds$month3)
-arima6m <- auto.arima(bonds$month6)
-arima9m <- auto.arima(bonds$month9)
-arima1y <- auto.arima(bonds$year1)
-arima5y <- auto.arima(bonds$year5)
-arima15y <- auto.arima(bonds$year5)
-arima30y <- auto.arima(bonds$year15)
+arima3m <- auto.arima(dUse$month3)
+arima6m <- auto.arima(dUse$month6)
+arima9m <- auto.arima(dUse$month9)
+arima1y <- auto.arima(dUse$year1)
+arima5y <- auto.arima(dUse$year5)
+arima15y <- auto.arima(dUse$year5)
+arima30y <- auto.arima(dUse$year15)
 
 # Constant
-с3m <- arima(bonds$month3, order=c(0,0,0))
-с6m <- arima(bonds$month6, order=c(0,0,0))
-с9m <- arima(bonds$month9, order=c(0,0,0))
-с1y <- arima(bonds$year1, order=c(0,0,0))
-с5y <- arima(bonds$year5, order=c(0,0,0))
-с15y <- arima(bonds$year5, order=c(0,0,0))
-с30y <- arima(bonds$year15, order=c(0,0,0))
+с3m <- arima(dUse$month3, order=c(0,0,0))
+с6m <- arima(dUse$month6, order=c(0,0,0))
+с9m <- arima(dUse$month9, order=c(0,0,0))
+с1y <- arima(dUse$year1, order=c(0,0,0))
+с5y <- arima(dUse$year5, order=c(0,0,0))
+с15y <- arima(dUse$year5, order=c(0,0,0))
+с30y <- arima(dUse$year15, order=c(0,0,0))
 
 
 # ARIMA and RW
-
-dm.test(predict(arima3m, 30)$pred - bonds_test$month3[1:30], predict(rw3m, 30)$pred - bonds_test$year15[1:30])
-
-mae(predict(arima3m, 30)$pred , bonds_test$month3[1:30])
-mae(predict(rw3m, 30)$pred , bonds_test$month3[1:30])
-mae(predict(с3m, 30)$pred , bonds_test$month3[1:30])
-plot(bonds_test$month3[1:30], type='l')
-plot(predict(arima3m, 30)$pred, type='l')
-
-
 dm.test(predict(arima15y, 30)$pred - bonds_test$year15[1:30], predict(rw15y, 30)$pred - bonds_test$year15[1:30])
 
 mae(predict(arima15y, 30)$pred , bonds_test$year15[1:30])
