@@ -49,7 +49,16 @@ dUseST_with_date <- data.frame(
     # date = df_train$date[-1],
     month3 = df_train$Y025,
     month6 = df_train$Y05,
-    month9 = df_train$Y075
+    month9 = df_train$Y075,
+    year1 = df_train$Y1,
+    year2 = df_train$Y2,
+    year3 = df_train$Y3,
+    year5 = df_train$Y5,
+    year7 = df_train$Y7,
+    year10 = df_train$Y10,
+    year15 = df_train$Y15,
+    year20 = df_train$Y20,
+    year30 = df_train$Y30
     # month3 = 100 * (exp(diff(log(df_train$Y025))) - 1),
     # month6 = 100 * (exp(diff(log(df_train$Y05))) - 1),
     # month9 = 100 * (exp(diff(log(df_train$Y075))) - 1)
@@ -95,7 +104,8 @@ plot(df_test$date[1:step_for_final_predict],
 
 
 # GARCH
-curretly_df <- dUseST_with_date$month9
+curretly_df <- dUseST_with_date$year30
+curretly_df_test <- df_test$Y30
 chartSeries(curretly_df)
 # глянем настоящую вол
 chart.RollingPerformance(R = curretly_df,
@@ -105,8 +115,8 @@ chart.RollingPerformance(R = curretly_df,
                          main = 'daily vol')
 
 mSpec <- ugarchspec(
-    variance.model = list(garchOrder = c(1, 1)),
-    mean.model = list(armaOrder = c(1, 2)), distribution.model = "norm"
+    variance.model = list(model = "sGARCH", garchOrder = c(1, 1)),
+    mean.model = list(armaOrder = c(1, 1)), distribution.model = "sstd"
 )
 
 garch <- ugarchfit(
@@ -116,7 +126,7 @@ garch <- ugarchfit(
 
 tick_for_end_forecast <- 10
 predict_garch <- ugarchforecast(fitORspec = garch, n.ahead = tick_for_end_forecast)
-plot(sigma(predict_garch))
+# plot(sigma(predict_garch))
 
 predict_final <- mSpec
 setfixed(predict_final) <- as.list(coef(garch))
@@ -126,10 +136,24 @@ sim <- ugarchpath(spec = predict_final,
                   n.sim = tick_for_end_forecast,
                   rseed = 16)
 
-# запустить для общей наглядности, почти похожи 
-plot.zoo(sigma(sim))
-plot(ts(df_test$Y075[1:tick_for_end_forecast]))
-mae(sigma(sim), df_test$Y075[1:tick_for_end_forecast])
+# запустить для общей наглядности, почти похожи
+plot.zoo(100 * sigma(sim))
+head(sigma(sim), tick_for_end_forecast)
+head(curretly_df_test[1:tick_for_end_forecast], tick_for_end_forecast)
+plot(ts(curretly_df_test[1:tick_for_end_forecast]))
+mae(100 * sigma(sim), curretly_df_test[1:tick_for_end_forecast])
+# month3 = 0.6115105
+# month6 = 0.4658121
+# month9 = 0.5676937
+# year1 = 0.7794302
+# year2 = 1.577212
+# year3 = 1.253127
+# year5 = 1.274293
+# year7 = 1.281162
+# year10 = 1.492428
+# year15 = 1.927679
+# year20 = 1.692059
+# year30 = 1.828691
 
 # month9
 # Garch | ARMA  | Akaike 
