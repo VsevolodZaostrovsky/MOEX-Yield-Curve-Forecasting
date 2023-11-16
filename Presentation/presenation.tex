@@ -1,28 +1,27 @@
 \documentclass[aspectratio=169]{beamer}
 
-% \renewcommand{\textSupervisors}    {Supervisors}
 
 \usetheme{vega}
+\renewcommand{\textSupervisors}    {Supervisor}
 
 \title{Forecasting the Yield Curve: An Econometric Study}
-\subtitle{Financial Econometrics}
+\subtitle{}
 \author{Vsevolod Zaostrovsky, Ivan Cherepakhin, Artemy Sazonov}
-\institute{Vega Institute Foundation}
+\institute{Lomonosov Moscow State University}
 \supervisor{Ivan P. Stankevich}
-% \date{August 21 -- 28, 2022}
 
 \begin{document}
 \maketitle
 
-\begin{frame}{The Data}
+\begin{frame}{Data}
     \begin{figure}
         \includegraphics[scale=0.21]{fig/YTMp.pdf}
-        \caption{YTM for three different bonds}
+        \caption{YTM for three different TTM}
         \label{fig:YTMp}
     \end{figure}
 \end{frame}
 
-    \begin{frame}{The Yield Curve}
+    \begin{frame}{Yield Curve}
         \begin{figure}
             \includegraphics[scale=0.21]{fig/ZCYp.pdf}
             \caption{The yield curves in two different moments of time}
@@ -30,12 +29,12 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{The first approach: time series models}
+    \begin{frame}{Naive approach}{Results (MAE)}
         \begin{table}
             \centering
-            \begin{tabular}{|c c c c c c c|} 
+            \begin{tabular}{|c c c c c c|} 
                 \hline
-                Maturity & autoARIMA & ARIMA(0, 0, 0) & RW & VECM(2) & GARCH \\
+                Time to maturity & auto-ARIMA & ARIMA(0, 0, 0) & RW & VECM(2) & GARCH \\
                 \hline
                 3m & $0.0045$ & $0.0047$ & $0.0109$ & $0.0193$ & $0.6115$ \\ 
                 \hline
@@ -71,32 +70,35 @@
     \end{frame}
 
     \begin{frame}{Nelson-Siegel parametric model}{Forecasting the factors}
-    \begin{tabular}{|c | c c c|} 
-        \hline
-        Coefficient & auto-ARIMA & VAR(1) & RW \\
-        \hline
-        $\beta_0$ & $53.78356$ & $131.1459$ & $66.3105$ \\ 
-        \hline
-        $\beta_1$ & $63.31042$ & $143.9235$ & $66.25878$ \\
-        \hline
-        $\beta_2$ & $133.9688$ & $388.3436$ & $177.1525$ \\
-        \hline
-        $\tau$ & $1.083687$ & $2.569167$ & $1.328986$ \\
-        \hline
-    \end{tabular}
+        \begin{table}
+            \centering
+            \begin{tabular}{|c | c c c|} 
+                \hline
+                Factor & auto-ARIMA & VAR(1) & RW \\
+                \hline
+                $\beta_0$ & $53.78356$ & $131.1459$ & $66.3105$ \\ 
+                \hline
+                $\beta_1$ & $63.31042$ & $143.9235$ & $66.25878$ \\
+                \hline
+                $\beta_2$ & $133.9688$ & $388.3436$ & $177.1525$ \\
+                \hline
+                $\tau$ & $1.083687$ & $2.569167$ & $1.328986$ \\
+                \hline
+            \end{tabular}
+            \caption{Calibrated factors}
+        \end{table}
 \end{frame}
 
-    \begin{frame}{Conclusion and next steps}
-    We concluded that:
+    \begin{frame}{Conclusion}
+    We found out that:
     \begin{enumerate}
-        \item It is better not to use simple time series 
-        models to predict bond returns \ldots
-        \item \ldots since the first difference of bonds is martingale relative to the filtering of these models.
-        \item Research structural breaks.
+        \item It is better not to use naive time series models to predict bond yields directly \ldots
+        \item \ldots since the first difference of bond yields is a <<martingale>> wrt the given information.
+        \item Research structural breaks of the yield curve.
     \end{enumerate}
     Our plans for the future of this paper:
     \begin{enumerate}
-        \item Try the more complicated modifications of NS model.
+        \item Try more complicated modifications of Nelson-Siegel model.
         \item Add exogeneous variables.
         \item Research the structural breaks.
     \end{enumerate}
