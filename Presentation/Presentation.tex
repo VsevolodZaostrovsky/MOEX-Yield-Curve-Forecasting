@@ -4,55 +4,58 @@
 
 \usetheme{vega}
 
-\title{Report on the project "Forecasting the Yield Curve: An Econometric Study"}
+\title{Forecasting the Yield Curve: An Econometric Study}
 \subtitle{Financial Econometrics}
 \author{Vsevolod Zaostrovsky, Ivan Cherepakhin, Artemy Sazonov}
 \institute{Vega Institute Foundation}
 \supervisor{Ivan P. Stankevich}
 % \date{August 21 -- 28, 2022}
 
-\usepackage[]{lipsum}
 \begin{document}
 \maketitle
 
 \begin{frame}{The Data}
     \begin{figure}
-    \includegraphics[scale=0.21]{fig/YTMp.pdf}
-
-    \caption{YTM for three different bonds}
-    \label{fig:YTMp}
+        \includegraphics[scale=0.21]{fig/YTMp.pdf}
+        \caption{YTM for three different bonds}
+        \label{fig:YTMp}
     \end{figure}
 \end{frame}
 
     \begin{frame}{The Yield Curve}
         \begin{figure}
-        \includegraphics[scale=0.21]{fig/ZCYp.pdf}
-        \caption{The Yield Curves in two different moments of time}
-        \label{fig:ZCY}
+            \includegraphics[scale=0.21]{fig/ZCYp.pdf}
+            \caption{The yield curves in two different moments of time}
+            \label{fig:ZCY}
         \end{figure}
     \end{frame}
 
     \begin{frame}{The first approach: time series models}
-\begin{tabular}{|c c c c c c c|} 
-    \hline
-    Maturity & autoARIMA & ARIMA(0, 0, 0) & RW & VECM(2) & GARCH \\
-    \hline
-    3m & $0.0045$ & $0.0047$ & $0.0109$ & $0.0193$ & $0.6115$ \\ 
-    \hline
-    6m & $0.0039$  & 0.$0041$ & $0.0100$ & $0.0182$ & $0.4658$ \\
-    \hline
-    9m & $0.0035^{**}$ & $0.0038$ & $0.0095$ & $0.0178$ & $0.5676$ \\
-    \hline
-    12m & $0.0038^{**}$ & $0.0039$ & $0.0069$ & $0.0194$ & $0.7794$ \\
-    \hline
-    5y & $0.0052$ & $0.0053$ & $0.0072$ & $0.0182$ & $1.2742$\\
-    \hline
-    15y & $0.0059$ & $0.0061$ & $0.0076$ & $0.0174$ & $1.9276$ \\ 
-    \hline
-\end{tabular}
+        \begin{table}
+            \centering
+            \begin{tabular}{|c c c c c c c|} 
+                \hline
+                Maturity & autoARIMA & ARIMA(0, 0, 0) & RW & VECM(2) & GARCH \\
+                \hline
+                3m & $0.0045$ & $0.0047$ & $0.0109$ & $0.0193$ & $0.6115$ \\ 
+                \hline
+                6m & $0.0039$  & 0.$0041$ & $0.0100$ & $0.0182$ & $0.4658$ \\
+                \hline
+                9m & $0.0035^{**}$ & $0.0038$ & $0.0095$ & $0.0178$ & $0.5676$ \\
+                \hline
+                12m & $0.0038^{**}$ & $0.0039$ & $0.0069$ & $0.0194$ & $0.7794$ \\
+                \hline
+                5y & $0.0052$ & $0.0053$ & $0.0072$ & $0.0182$ & $1.2742$\\
+                \hline
+                15y & $0.0059$ & $0.0061$ & $0.0076$ & $0.0174$ & $1.9276$ \\ 
+                \hline
+            \end{tabular}
+            \caption{}
+        \end{table}
+
     \end{frame}
 
-    \begin{frame}{The second approach: Nelson--Siegel parametric model}
+    \begin{frame}{Nelson-Siegel parametric model}{Model definition}
         The static NS model is defined as follows:
             \begin{equation}\label{eq:NS}
                 G(T) = \beta_0 + (\beta_1+\beta_2)\frac{\tau}{T}\left(1-e^{-\frac{T}{\tau}}\right)-\beta_2  e^{-\frac{T}{\tau}},
@@ -67,7 +70,7 @@
             \end{enumerate}
     \end{frame}
 
-    \begin{frame}{The second approach: time series models}
+    \begin{frame}{Nelson-Siegel parametric model}{Forecasting the factors}
     \begin{tabular}{|c | c c c|} 
         \hline
         Coefficient & auto-ARIMA & VAR(1) & RW \\
@@ -83,7 +86,7 @@
     \end{tabular}
 \end{frame}
 
-    \begin{frame}{Our conclusions and next steps}
+    \begin{frame}{Conclusion and next steps}
     We concluded that:
     \begin{enumerate}
         \item It is better not to use simple time series 
@@ -91,11 +94,11 @@
         \item \ldots since the first difference of bonds is martingale relative to the filtering of these models.
         \item Research structural breaks.
     \end{enumerate}
-    Our plans on the next research iteration:
+    Our plans for the future of this paper:
     \begin{enumerate}
         \item Try the more complicated modifications of NS model.
         \item Add exogeneous variables.
-        \item Research structural breaks.
+        \item Research the structural breaks.
     \end{enumerate}
     \end{frame}
 

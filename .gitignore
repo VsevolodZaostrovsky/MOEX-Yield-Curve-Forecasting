@@ -18,8 +18,11 @@ gdp_2.csv
 *.lof
 *.lot
 *.tdo
+*.nav
+*.snm
 
 report/document.pdf
+presentation/presentation.pdf
 
 # Python Junk
 *.pyc
