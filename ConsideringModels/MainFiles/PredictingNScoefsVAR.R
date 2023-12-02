@@ -81,6 +81,9 @@ mae(parimab0$pred, test$b0)
 mae(predvar$fcst$b0, test$b0)
 mae(prwb0$pred, test$b0)
 
+dm.test(parimab0$pred - test$b0, prwb0$pred - test$b0)
+dm.test(predvar$fcst$b0 - test$b0, parimab0$pred - test$b0)
+        
 latex(dm.test(parimab0$pred - test$b0, prwb0$pred - test$b0), file="b0autoARIMAvsRW")
 latex(dm.test(predvar$fcst$b0 - test$b0, parimab0$pred - test$b0), file="b0VARvsautoARIMA")
 
@@ -92,6 +95,9 @@ prwb1 <- predict(rwb1, 10)
 mae(parimab1$pred, test$b1)
 mae(predvar$fcst$b1, test$b1)
 mae(prwb1$pred, test$b1)
+
+dm.test(parimab1$pred - test$b1, prwb1$pred - test$b1)
+dm.test(predvar$fcst$b1 - test$b1, parimab1$pred - test$b1)
 
 latex(dm.test(parimab1$pred - test$b1, prwb1$pred - test$b1), file="b1autoARIMAvsRW")
 latex(dm.test(predvar$fcst$b1 - test$b1, parimab1$pred - test$b1), file="b1VARvsautoARIMA")
@@ -105,6 +111,8 @@ mae(parimab2$pred, test$b2)
 mae(predvar$fcst$b2, test$b2)
 mae(prwb2$pred, test$b2)
 
+dm.test(parimab2$pred - test$b2, prwb2$pred - test$b2)
+
 latex(dm.test(parimab2$pred - test$b2, prwb2$pred - test$b2), file="b2autoARIMAvsRW")
 latex(dm.test(predvar$fcst$b2 - test$b2, parimab2$pred - test$b2), file="b2VARvsautoARIMA")
 
@@ -117,5 +125,8 @@ mae(parimatau$pred, test$tau)
 mae(predvar$fcst$tau, test$tau)
 mae(prwtau$pred, test$tau)
 
+dm.test(parimatau$pred - test$tau, prwtau$pred - test$tau)
+dm.test(predvar$fcst$tau - test$tau, parimatau$pred - test$tau
+        
 latex(dm.test(parimatau$pred - test$tau, prwtau$pred - test$tau), file="tauautoARIMAvsRW")
 latex(dm.test(predvar$fcst$tau - test$tau, parimatau$pred - test$tau), file="tauVARvsautoARIMA")
