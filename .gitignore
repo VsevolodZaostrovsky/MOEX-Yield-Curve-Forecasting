@@ -1,6 +1,7 @@
 Data
 gdp_2.csv
 
+*.csv
 # LaTeX Junk
 *.aux
 *.log
