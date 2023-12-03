@@ -126,7 +126,7 @@ mae(predvar$fcst$tau, test$tau)
 mae(prwtau$pred, test$tau)
 
 dm.test(parimatau$pred - test$tau, prwtau$pred - test$tau)
-dm.test(predvar$fcst$tau - test$tau, parimatau$pred - test$tau
+dm.test(predvar$fcst$tau - test$tau, parimatau$pred - test$tau)
         
 latex(dm.test(parimatau$pred - test$tau, prwtau$pred - test$tau), file="tauautoARIMAvsRW")
 latex(dm.test(predvar$fcst$tau - test$tau, parimatau$pred - test$tau), file="tauVARvsautoARIMA")
