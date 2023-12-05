@@ -1,0 +1,48 @@
+Forecast Accuracy of: beta0
+mape   :  2.4086
+me     :  2062.9983
+mae    :  2062.9983
+mpe    :  2.4086
+rmse   :  2109.0292
+Forecast Accuracy of: beta1
+mape   :  8.8918
+me     :  -1986.5645
+mae    :  1986.5645
+mpe    :  8.8918
+rmse   :  2009.4069
+Forecast Accuracy of: beta2
+mape   :  30.0551
+me     :  -6835.3624
+mae    :  6835.3624
+mpe    :  30.0551
+rmse   :  7388.3095
+Forecast Accuracy of: tau
+mape   :  4.9541
+me     :  -28.5051
+mae    :  28.5051
+mpe    :  -4.9541
+rmse   :  30.4631
+Forecast Accuracy of: WLbeta0
+mape   :  196.8655
+me     :  181153.4216
+mae    :  181153.4216
+mpe    :  196.8655
+rmse   :  190604.6084
+Forecast Accuracy of: WLbeta1
+mape   :  614.118
+me     :  -181038.1795
+mae    :  181038.1795
+mpe    :  614.118
+rmse   :  190456.9129
+Forecast Accuracy of: WLbeta2
+mape   :  1119.9819
+me     :  -198316.0394
+mae    :  198316.0394
+mpe    :  -127.3911
+rmse   :  208688.2565
+Forecast Accuracy of: WLtau
+mape   :  1267.9028
+me     :  -50.7076
+mae    :  94.3127
+mpe    :  -1260.2071
+rmse   :  104.7038
