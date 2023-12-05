@@ -8,18 +8,15 @@
             The ADF test is a unit root test, which means that it determines how strongly a time series is defined by a trend.
             The test is based on the assumption that the time series is a random walk with drift.
             The test is performed using the \texttt{ur.df} function from the \texttt{urca} package in R.
-            The results of the test are presented in Table \ref{tab:adftestForYields} (yields) and Table 
-            \ref{tab:adftestForYieldsDifference} (first difference).
+            The results of the test are presented in \cref{tab:adftestForYields} (yields) and \cref{tab:adftestForYieldsDifference} (first difference).
             \subimport{results/BondDFtests}{WithoutDiff.tex}
             \subimport{results/BondDFtests}{WithDiff.tex}
-
-
 
         \subsubsection{Cointegration}
             In order to test the cointegration of the yield curve and the macroeconomic variables, we shall use the
             \emph{Johansen test}. The null hypothesis of the test is that the time series are not cointegrated.
             The test is performed using the \texttt{ca.jo} function from the \texttt{urca} package in R.
-            The results of the test are presented in Table \ref{tab:johansenTest}.    
+            The results of the test are presented in \cref{tab:johansenTest}.    
 
             \subimport{cointegr}{Cointegration_table.tex}
 
@@ -31,9 +28,6 @@
             differentiated by their investment purpose (buying short-term bonds to obtain small but guaranteed revenue, or long-term 
             bonds to hedge against the drop in the interest rate). It implies that the yields with similar maturities can be 
             cointegrated.
-
-
-
 
     \subsection{Na\"ive approach for the bond yield forecasting}
         \subsubsection{Random walk}
@@ -124,7 +118,7 @@
 
             \begin{figure}
                 \includegraphics[width=\linewidth]{FactorHist.pdf}
-                \caption{Nelson-Siegel factor distribution (with outliers)}
+                \caption{Nelson-Siegel factor distribution (with outliers).}
                 \label{fig:NSHistOutliers}
             \end{figure}
 
@@ -161,7 +155,7 @@
             \subimport{results/NScoefsStationary}{NScoefsStationary}
 
             It turns out that the best forecast of the NS factors is the constant forecast. The results of the model calibration on a train dataset are presented 
-            in Table \ref{tab:DNSresults}\footnote{Auto-ARIMA is not significantly better then RW. 
+            in \cref{tab:DNSresults}\footnote{Auto-ARIMA is not significantly better then RW. 
             All the other differences are significant at 1\% confidence level. We used Diebold-Mariano test. }.
             \begin{table}[htbp]
                 \centering
@@ -169,3 +163,7 @@
                 \caption{Parameters of the DNS model for 3 different forecasting models.}
                 \label{tab:DNSresults}
             \end{table}
+
+        \subsubsection{Summary}
+            Due to inadequacy of the pointwise bond yield forecasting results, we concluded that the Nelson-Siegel model is more suitable for our needs. Therefore, the rest of the research will be devoted to the deeper 
+            understanding of the chosen model and its generalization.
