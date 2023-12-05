@@ -1,0 +1,72 @@
+Forecast Accuracy of: 0.25
+mape   :  0.034
+me     :  0.056
+mae    :  0.3575
+mpe    :  0.007
+rmse   :  0.4118
+Forecast Accuracy of: 0.5
+mape   :  0.0312
+me     :  0.0249
+mae    :  0.3298
+mpe    :  0.0039
+rmse   :  0.3978
+Forecast Accuracy of: 0.75
+mape   :  0.0311
+me     :  0.0488
+mae    :  0.3283
+mpe    :  0.006
+rmse   :  0.38
+Forecast Accuracy of: 1.0
+mape   :  0.0312
+me     :  0.0765
+mae    :  0.3282
+mpe    :  0.0086
+rmse   :  0.3643
+Forecast Accuracy of: 2.0
+mape   :  0.0378
+me     :  0.2548
+mae    :  0.3896
+mpe    :  0.0255
+rmse   :  0.3924
+Forecast Accuracy of: 3.0
+mape   :  0.0425
+me     :  0.3185
+mae    :  0.4347
+mpe    :  0.0319
+rmse   :  0.4425
+Forecast Accuracy of: 5.0
+mape   :  0.0471
+me     :  0.3764
+mae    :  0.4746
+mpe    :  0.0381
+rmse   :  0.49
+Forecast Accuracy of: 7.0
+mape   :  0.0467
+me     :  0.3558
+mae    :  0.4641
+mpe    :  0.0366
+rmse   :  0.4766
+Forecast Accuracy of: 10.0
+mape   :  0.0419
+me     :  0.2572
+mae    :  0.4115
+mpe    :  0.0272
+rmse   :  0.4154
+Forecast Accuracy of: 15.0
+mape   :  0.0338
+me     :  0.1591
+mae    :  0.3281
+mpe    :  0.0173
+rmse   :  0.3337
+Forecast Accuracy of: 20.0
+mape   :  0.0272
+me     :  0.0828
+mae    :  0.2627
+mpe    :  0.0094
+rmse   :  0.2815
+Forecast Accuracy of: 30.0
+mape   :  0.0207
+me     :  0.0099
+mae    :  0.2
+mpe    :  0.0017
+rmse   :  0.2481
