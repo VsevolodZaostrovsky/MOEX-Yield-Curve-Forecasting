@@ -1,0 +1,24 @@
+Forecast Accuracy of: beta0
+mape   :  0.0578
+me     :  48.5869
+mae    :  48.5869
+mpe    :  0.0578
+rmse   :  57.57
+Forecast Accuracy of: beta1
+mape   :  0.0972
+me     :  -15.7947
+mae    :  19.6762
+mpe    :  0.0816
+rmse   :  27.1274
+Forecast Accuracy of: beta2
+mape   :  0.1214
+me     :  7.6326
+mae    :  27.0065
+mpe    :  -0.0172
+rmse   :  29.0144
+Forecast Accuracy of: tau
+mape   :  0.0916
+me     :  0.3636
+mae    :  0.5129
+mpe    :  0.069
+rmse   :  0.5959
