@@ -1,8 +1,8 @@
 \section{Markov Chain State Modelling}\label{sec:MCSM}
     Let us suppose that there are two states of market volatility: high (1) and moderate (0).
     We consider the MS-ARIMA (ARIMAX with economy state as an exogenous variable) model for the dynamics of the Nelson-Siegel factors.
-    You can see the calibration and forecasting results in \cref{tab:structuralARIMAX,fig:quateryear,fig:yieldraw}
-
+    We tested everything on stationarity of values and first difference and the Granger causality of the factors. The details of the methodology could be found in the repository.
+    You can see the calibration and forecasting results in \cref{tab:structuralARIMAX,fig:quateryear,fig:yieldraw,fig:arimax:forecast}.
 
 
     \begin{figure}[htbp]
@@ -70,9 +70,14 @@
                         &15.0&0.0338&0.1591&0.3281&0.0173&0.3337\\ \cline{2-7}
                         &20.0&0.0272&0.0828&0.2627&0.0094&0.2815\\ \cline{2-7}
                         &30.0&0.0207&0.0099&0.2&0.0017&0.2481\\ \hline
-
         \end{tabular}
         \caption{MS-ARIMA forecasting results for the structural NS factors.}
         \label{tab:structuralARIMAX}
     \end{table}
 
+
+    \begin{figure}[htbp]
+        \includegraphics[width=\linewidth]{forecast_arimax.png}
+        \caption{MS-ARIMA forecasting.}
+        \label{fig:arimax:forecast}
+    \end{figure}
