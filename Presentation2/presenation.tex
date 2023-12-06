@@ -1,5 +1,6 @@
 \documentclass[aspectratio=169]{beamer}
 
+\usepackage{multirow}
 
 \usetheme{vega}
 \renewcommand{\textSupervisors}    {Supervisor}
@@ -31,7 +32,7 @@
 \begin{frame}{Structural breaks in factors}
 
     \begin{figure}
-        \includegraphics[scale=0.31]{fig/StrBreaks.pdf}
+        \includegraphics[scale=0.43]{fig/StrBreaks.pdf}
         \caption{Yield Curve }
         \label{fig:StrBreaks}
     \end{figure}
@@ -50,37 +51,53 @@
 
 
     \begin{frame}{Structural breaks}
-        \begin{table}[htbp]
-            \centering
-            \begin{tabular}{|l|l|l|l|l|l|}
-            \hline
-            Segment            & Factor    & MAPE         & MAE         & RMSE    \\ \hline
-            \multirow{ARIMA}{*}{3} & $\beta_0$ & 0.006        & 5.5102      & 6.0729  \\ \cline{2-7} 
-                               & $\beta_1$ & 0.3471       & 29.3697     & 32.2907 \\ \cline{2-7} 
-                               & $\beta_2$ & 0.5223       & 93.8611     & 95.6724 \\ \cline{2-7} 
-                               & $\tau$    & 0.9588       & 1.8988      & 1.987   \\ \hline
-            \multirow{VAR}{*}{3} & $\beta_0$ & 0.0139       & 12.8457     & 14.9255     \\ \cline{2-7} 
-                               & $\beta_1$ & 0.134        &  12.1766    &  15.9566    \\ \cline{2-7} 
-                               & $\beta_2$ &  0.3394      & 60.4861     &  61.5831    \\ \cline{2-7} 
-                               & $\tau$    &  0.3582      &  0.68       &  0.7972    \\ \hline
+        \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline
+            Factor    &  MAPE         & MAE         & RMSE          \\ \hline
+            $\beta_0$ &  0.006        & 5.5102      & 6.0729        \\ \hline 
+            $\beta_1$ &  0.3471       & 29.3697     & 32.2907       \\ \hline 
+            $\beta_2$ &  0.5223       & 93.8611     & 95.6724       \\ \hline 
+            $\tau$    &  0.9588       & 1.8988      & 1.987         \\ \hline
             \end{tabular}
-            \caption{NS factors forecasting results for the 3rd segment.}
-        \end{table}
+        \end{center}
+        \caption{NS factors forecasting results using ARIMA for the last segment.}
+    \end{table} 
+    \begin{table}[H]
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+            Factor    &  MAPE         & MAE         & RMSE          \\ \hline
+    
+            $\beta_0$ &  0.0139       & 12.8457     & 14.9255       \\ \hline 
+            $\beta_1$ &  0.134        &  12.1766    &  15.9566      \\ \hline 
+            $\beta_2$ &  0.3394       & 60.4861     &  61.5831      \\ \hline 
+            $\tau$    &  0.3582       &  0.68       &  0.7972       \\ \hline
+            \end{tabular}
+            \caption{NS factors forecasting results using VAR for the last segment.}
+        \end{center}
+    \end{table} 
+
+
+
     \end{frame}
 
-    \begin{frame}{Nelson-Siegel parametric model}{Model definition}
-        The static NS model is defined as follows:
-            \begin{equation}\label{eq:NS}
-                G(T) = \beta_0 + (\beta_1+\beta_2)\frac{\tau}{T}\left(1-e^{-\frac{T}{\tau}}\right)-\beta_2  e^{-\frac{T}{\tau}},
-            \end{equation}
-            where $T$ is the time to maturity, $G(T)$ is the yield estimator of the government bonds from the curve basis, 
-            and the parameters to be estimated are
-            \begin{enumerate}
-                \item $\tau$ is the 'typical' time to maturity, 
-                \item $\beta_0$ is the long-run of zero-bond yields, 
-                \item $\beta_1$ is the mid-run of zero-bond yields, 
-                \item $\beta_2$ is the short-run of zero-bond yields.
-            \end{enumerate}
+    \begin{frame}{Nelson-Siegel factors forcast using ARIMA}
+        \begin{figure}
+            \includegraphics[scale=0.47]{fig/ARIMAfcst.pdf}
+            \caption{Nelson-Siegel factors forcast using ARIMA}
+            \label{fig:VARnsfcst}
+        \end{figure}
+    \end{frame}
+
+
+    \begin{frame}{Nelson-Siegel factors forcast using VAR}
+        \begin{figure}
+            \includegraphics[scale=0.47]{fig/VARforcasts.pdf}
+            \caption{Nelson-Siegel factors forcast using VAR}
+            \label{fig:VARnsfcst}
+        \end{figure}
     \end{frame}
 
 
