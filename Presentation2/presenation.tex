@@ -13,45 +13,59 @@
 \begin{document}
 \maketitle
 
-\begin{frame}{Data}
+\begin{frame}{YC and data}
     \begin{figure}
-        \includegraphics[scale=0.21]{fig/YTMp.pdf}
-        \caption{YTM for three different TTM}
+        \includegraphics[scale=0.21]{fig/ZCYp.pdf}
+        \caption{Yield Curve }
         \label{fig:YTMp}
+    \end{figure}
+    \begin{equation}\label{eq:NS}
+        G(T) = \beta_0 + (\beta_1+\beta_2)\frac{\tau}{T}\left(1-e^{-\frac{T}{\tau}}\right)-\beta_2  e^{-\frac{T}{\tau}},
+    \end{equation}
+    where $T$ is the time to maturity, $G(T)$ is the yield estimator, 
+    and the parameters to be estimated are: $\beta_0$ is the long-run of zero-bond yields, $\beta_1$ is the mid-run of zero-bond yields, 
+    $\beta_2$ is the short-run of zero-bond yields.
+    
+\end{frame}
+
+\begin{frame}{Structural breaks in factors}
+
+    \begin{figure}
+        \includegraphics[scale=0.31]{fig/StrBreaks.pdf}
+        \caption{Yield Curve }
+        \label{fig:StrBreaks}
     \end{figure}
 \end{frame}
 
-    \begin{frame}{Yield Curve}
-        \begin{figure}
-            \includegraphics[scale=0.21]{fig/ZCYp.pdf}
-            \caption{The yield curves in two different moments of time}
-            \label{fig:ZCY}
-        \end{figure}
-    \end{frame}
+\begin{frame}{Structural breaks in factors}
+    \begin{enumerate}
+        \item 2005: The complete stabilization of the Russian economy, the war in Iraq. 
+        \item 2008: the Russo-Georgian Conflict and the beginning of the world finanical crisis.
+        \item 2018: protests from March 2017 to the end of 2018. Also, it was a 2018 FIFA World Cup.
+        \item 2020: COVID-19 pandemic.
+        \item 2022: special military operation.
+    \end{enumerate}
 
-    \begin{frame}{Naive approach}{Results (MAE)}
-        \begin{table}
+\end{frame}
+
+
+    \begin{frame}{Structural breaks}
+        \begin{table}[htbp]
             \centering
-            \begin{tabular}{|c c c c c c|} 
-                \hline
-                Time to maturity & auto-ARIMA & ARIMA(0, 0, 0) & RW & VECM(2) & GARCH \\
-                \hline
-                3m & $0.0045$ & $0.0047$ & $0.0109$ & $0.0193$ & $0.6115$ \\ 
-                \hline
-                6m & $0.0039$  & 0.$0041$ & $0.0100$ & $0.0182$ & $0.4658$ \\
-                \hline
-                9m & $0.0035^{**}$ & $0.0038$ & $0.0095$ & $0.0178$ & $0.5676$ \\
-                \hline
-                12m & $0.0038^{**}$ & $0.0039$ & $0.0069$ & $0.0194$ & $0.7794$ \\
-                \hline
-                5y & $0.0052$ & $0.0053$ & $0.0072$ & $0.0182$ & $1.2742$\\
-                \hline
-                15y & $0.0059$ & $0.0061$ & $0.0076$ & $0.0174$ & $1.9276$ \\ 
-                \hline
+            \begin{tabular}{|l|l|l|l|l|l|}
+            \hline
+            Segment            & Factor    & MAPE         & MAE         & RMSE    \\ \hline
+            \multirow{ARIMA}{*}{3} & $\beta_0$ & 0.006        & 5.5102      & 6.0729  \\ \cline{2-7} 
+                               & $\beta_1$ & 0.3471       & 29.3697     & 32.2907 \\ \cline{2-7} 
+                               & $\beta_2$ & 0.5223       & 93.8611     & 95.6724 \\ \cline{2-7} 
+                               & $\tau$    & 0.9588       & 1.8988      & 1.987   \\ \hline
+            \multirow{VAR}{*}{3} & $\beta_0$ & 0.0139       & 12.8457     & 14.9255     \\ \cline{2-7} 
+                               & $\beta_1$ & 0.134        &  12.1766    &  15.9566    \\ \cline{2-7} 
+                               & $\beta_2$ &  0.3394      & 60.4861     &  61.5831    \\ \cline{2-7} 
+                               & $\tau$    &  0.3582      &  0.68       &  0.7972    \\ \hline
             \end{tabular}
-            \caption{}
+            \caption{NS factors forecasting results for the 3rd segment.}
         \end{table}
-
     \end{frame}
 
     \begin{frame}{Nelson-Siegel parametric model}{Model definition}
@@ -67,41 +81,6 @@
                 \item $\beta_1$ is the mid-run of zero-bond yields, 
                 \item $\beta_2$ is the short-run of zero-bond yields.
             \end{enumerate}
-    \end{frame}
-
-    \begin{frame}{Nelson-Siegel parametric model}{Forecasting the factors}
-        \begin{table}
-            \centering
-            \begin{tabular}{|c | c c c|} 
-                \hline
-                Factor & auto-ARIMA & VAR(1) & RW \\
-                \hline
-                $\beta_0$ & $53.78356$ & $131.1459$ & $66.3105$ \\ 
-                \hline
-                $\beta_1$ & $63.31042$ & $143.9235$ & $66.25878$ \\
-                \hline
-                $\beta_2$ & $133.9688$ & $388.3436$ & $177.1525$ \\
-                \hline
-                $\tau$ & $1.083687$ & $2.569167$ & $1.328986$ \\
-                \hline
-            \end{tabular}
-            \caption{Calibrated factors}
-        \end{table}
-\end{frame}
-
-    \begin{frame}{Conclusion}
-    We found out that:
-    \begin{enumerate}
-        \item It is better not to use naive time series models to predict bond yields directly \ldots
-        \item \ldots since the first difference of bond yields is a <<martingale>> wrt the given information.
-        \item Research structural breaks of the yield curve.
-    \end{enumerate}
-    Our plans for the future of this paper:
-    \begin{enumerate}
-        \item Try more complicated modifications of Nelson-Siegel model.
-        \item Add exogeneous variables.
-        \item Research the structural breaks.
-    \end{enumerate}
     \end{frame}
 
 
