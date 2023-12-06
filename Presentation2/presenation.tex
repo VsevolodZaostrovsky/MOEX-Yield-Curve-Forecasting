@@ -101,4 +101,47 @@
     \end{frame}
 
 
+    \begin{frame}{Nelson-Siegel factors forcast using MS-ARIMA}
+        \begin{table}[H]
+            \begin{center}
+                \begin{tabular}{|c|c|c|c|c|c|c|}
+                    \hline
+                    TTM    & MAPE---MC  & MAPE      & MAE---MC    & MAE       & RMSE---MC    & RMSE  \\ \hline
+                    0.25   &0.034       & 0.0354    & 0.3575      & 0.3716    &0.4118        &0.4187 \\ \hline
+                    0.5    &0.0312      & 0.033     & 0.3298      & 0.3482    &0.3978        &0.4082 \\ \hline
+                    0.75   &0.0311      & 0.0328    & 0.3283      & 0.3461    &0.38          &0.3912   \\ \hline
+                    1.0    &0.0312      & 0.0335    & 0.3282      & 0.3517    &0.3643        &0.3785 \\ \hline
+                    2.0    &0.0378      & 0.0394    & 0.3896      & 0.4061    &0.3924        &0.4105 \\ \hline
+                    3.0    &0.0425      & 0.0449    & 0.4347      & 0.459     &0.4425        &0.4721 \\ \hline
+                    5.0    &0.0471      & 0.0512    & 0.4746      & 0.5142    &0.49          &0.541   \\ \hline
+                    7.0    &0.0467      & 0.0492    & 0.4641      & 0.4879    &0.4766        &0.5111 \\ \hline
+                    10.0   &0.0419      & 0.0435    & 0.4115      & 0.4274    &0.4154        &0.4315 \\ \hline
+                    15.0   &0.0338      & 0.0349    & 0.3281      & 0.3387    &0.3337        &0.343 \\ \hline
+                    20.0   &0.0272      & 0.0308    & 0.2627      & 0.2967    &0.2815        &0.3037 \\ \hline
+                    30.0   &0.0207      & 0.0237    & 0.2         & 0.2279    &0.2481        &0.2595 \\ \hline
+                \end{tabular}
+                \caption{ARIMAX-MS vs ARIMA.}
+            \end{center}
+        \end{table} 
+    \end{frame}
+
+
+    \begin{frame}{Nelson-Siegel factors forcast using ARIMA}
+        \begin{figure}
+            \includegraphics[scale=0.22]{fig/ARIMAfcst copy.pdf}
+            \caption{ARIMA forcast}
+            \label{fig:VARnsfcst}
+        \end{figure}
+    \end{frame}
+
+
+    \begin{frame}{Nelson-Siegel factors forcast using VAR}
+        \begin{figure}
+            \includegraphics[scale=0.22]{fig/ARIMAX_MSFRCST.pdf}
+            \caption{ARIMAX-MS forcast}
+            \label{fig:VARnsfcst}
+        \end{figure}
+    \end{frame}
+
+
 \end{document}
