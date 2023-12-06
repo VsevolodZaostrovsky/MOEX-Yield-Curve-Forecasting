@@ -1,0 +1,10 @@
+\begin{table}[!tbp]
+\begin{center}
+\begin{tabular}{rrllrll}
+\hline\hline
+\multicolumn{1}{c}{statistic}&\multicolumn{1}{c}{parameter}&\multicolumn{1}{c}{alternative}&\multicolumn{1}{c}{varestimator}&\multicolumn{1}{c}{p.value}&\multicolumn{1}{c}{method}&\multicolumn{1}{c}{data.name}\tabularnewline
+\hline
+$6.08055481788166$&$1$&two.sided&acf&$4.00254807485183e-07$&Diebold-Mariano Test&predvar$fcst$b2 - test$b2\tabularnewline
+\hline
+\end{tabular}\end{center}
+\end{table}
