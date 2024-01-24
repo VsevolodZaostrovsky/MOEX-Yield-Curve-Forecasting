@@ -8,5 +8,5 @@
 3. Анализ коинтеграции бондов
 
 Для быстрого ознакомления с результатами рекомендуем обратиться к поддиректории "Presentation and report materials".
-В частности, с [отчетом](https://github.com/VsevolodZaostrovsky/VsevolodZaostrovsky/blob/main/VsevolodZaostrovsky_cv.pdf).
+В частности, с [отчетом](https://github.com/VsevolodZaostrovsky/FinancialEconometrics/blob/main/Presentation%20and%20report%20materials/report/document.pdf).
 
