@@ -1,12 +1,11 @@
-### Проект по финансовой эконометрике
+### Financial Econometrics Project
 
 
-В этом репозитории собраны результаты наших усилий по предсказанию кривой безкупонной доходности. В частности,
+This repository contains the results of our efforts to predict the zero-coupon yield curve. In particular,
 
-1. Предсказание доходностей бондов с разными временами до погашения при помощи раздичных временных рядов
-2. Построение временых рядов факторов динамической модели Нельсона--Сигеля и их предсказание
-3. Анализ коинтеграции бондов
+1. Prediction of yields of bonds with different times to maturity using different time series
+2. Construction of time series of factors of the Nelson-Siegel dynamic model and their prediction
+3. Bond cointegration analysis
 
-Для быстрого ознакомления с результатами рекомендуем обратиться к поддиректории "Presentation and report materials".
-В частности, с [отчетом](https://github.com/VsevolodZaostrovsky/FinancialEconometrics/blob/main/Presentation%20and%20report%20materials/report/document.pdf).
-
+To quickly familiarize yourself with the results, we recommend that you refer to the "Presentation and report materials" subdirectory.
+In particular, with [report](https://github.com/VsevolodZaostrovsky/FinancialEconometrics/blob/main/Presentation%20and%20report%20materials/report/document.pdf).

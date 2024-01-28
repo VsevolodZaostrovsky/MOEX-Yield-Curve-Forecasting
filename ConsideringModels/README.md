@@ -1,2 +1,2 @@
-В этой директории собран код, реализующий рассматриваемые нами временные ряды. В BadTries содержится код, результаты которого мы считаем не вполне актуальными,
-а так же идеи, от которых мы решили отказаться. В Part of the data содержатся исследования, которые провели лишь для части данных (2008 - 2016 гг).
+This directory contains the code that implements the time series we are considering. BadTries contains code whose results we consider not entirely relevant,
+as well as ideas that we decided to abandon. Part of the data contains studies that were conducted only for part of the data (2008 - 2016).
